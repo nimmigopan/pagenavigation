@@ -4,31 +4,78 @@
     padding: 10px;
     background-color: #f4f4f4;
     box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
 }
-.nav-pane ul {
-    list-style-type: none;
-    padding: 0;
+.nav-pane input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
 }
-.nav-pane li {
-    margin: 10px 0;
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width: 100%;
 }
-.nav-pane a {
+.dropbtn {
+    width: 100%;
+    padding: 8px;
+    background-color: #0078d7;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    width: 100%;
+}
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
     text-decoration: none;
-    color: #0078d7;
-    font-weight: bold;
+    display: block;
 }
-.nav-pane a:hover {
-    text-decoration: underline;
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
 }
 </style>
 
 <div class="nav-pane">
-  <ul>
-    <li><a href="https://abltechnicaluae.sharepoint.com/sites/CommSite/SitePages/Electrical-Tagging-Pre-requisites.aspx">Electrical pre-requisites</a></li>
-    <li><a href="https://abltechnicaluae.sharepoint.com/sites/CommSite/SitePages/Red-Tag-ELEC.aspx">Red Tag ELEC</a></li>
-    <li><a href="https://abltechnicaluae.sharepoint.com/sites/CommSite/SitePages/Yellow-Tag-ELEC.aspx">Yellow Tag ELEC</a></li>
-    <li><a href="https://abltechnicaluae.sharepoint.com/sites/CommSite/SitePages/Green-Tag-ELEC.aspx">Green Tag ELEC</a></li>
-    
-    <!-- Add more pages as needed -->
-  </ul>
+  <input type="text" id="searchBox" placeholder="Search...">
+  <div class="dropdown">
+    <button class="dropbtn">Select Page</button>
+    <div class="dropdown-content">
+        <a href="https://abltechnicaluae.sharepoint.com/sites/CommSite/SitePages/Electrical-Tagging-Pre-requisites.aspx">Electrical pre-requisites</a>
+        <a href="https://abltechnicaluae.sharepoint.com/sites/CommSite/SitePages/Red-Tag-ELEC.aspx">Red Tag ELEC</a>
+        <a href="https://abltechnicaluae.sharepoint.com/sites/CommSite/SitePages/Yellow-Tag-ELEC.aspx">Yellow Tag ELEC</a>
+        <a href="https://abltechnicaluae.sharepoint.com/sites/CommSite/SitePages/Green-Tag-ELEC.aspx">Green Tag ELEC</a>
+      <!-- Add more pages as needed -->
+    </div>
+  </div>
 </div>
+
+<script>
+document.getElementById('searchBox').addEventListener('keyup', function() {
+    var filter = this.value.toUpperCase();
+    var links = document.querySelectorAll('.dropdown-content a');
+    for (var i = 0; i < links.length; i++) {
+        var txtValue = links[i].textContent || links[i].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            links[i].style.display = '';
+        } else {
+            links[i].style.display = 'none';
+        }
+    }
+});
+</script>
